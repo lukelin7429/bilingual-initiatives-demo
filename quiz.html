@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch &amp; Quiz — Meet Teacher Mary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+<style>
+  .quiz { max-width:760px; }
+  .ident { display:flex; gap:16px; flex-wrap:wrap; margin-top:8px; }
+  .ident label { flex:1; min-width:220px; display:flex; flex-direction:column; gap:6px; font-weight:800; color:var(--ink); }
+  .ident input { font:inherit; font-size:18px; padding:12px 14px; border:2px solid var(--line); border-radius:12px; }
+  .ident input:focus { outline:none; border-color:var(--accent); }
+  .q { background:#fff; border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); padding:22px 24px; margin:18px 0; }
+  .q .qhead { display:flex; align-items:flex-start; gap:12px; }
+  .q .qnum { flex:none; width:34px; height:34px; border-radius:50%; background:var(--accent); color:#fff; font-weight:800; display:grid; place-items:center; font-family:var(--font-head); }
+  .q .qtext { font-size:20px; font-weight:800; }
+  .q .zh { color:var(--ink-soft); font-size:15px; font-weight:600; margin:2px 0 0 46px; }
+  .opts { list-style:none; padding:0; margin:14px 0 0 46px; display:grid; gap:10px; }
+  .opts li { margin:0; }
+  .opts label { display:flex; align-items:center; gap:12px; padding:12px 16px; border:2px solid var(--line); border-radius:12px; cursor:pointer; font-size:18px; transition:.12s; }
+  .opts label:hover { border-color:var(--accent-2); background:var(--bg-soft); }
+  .opts input { width:20px; height:20px; accent-color:var(--accent); }
+  .opts label.correct { border-color:#10b981; background:#eafaf3; }
+  .opts label.wrong { border-color:#ef4444; background:#fdeaea; }
+  .explain { margin:12px 0 0 46px; font-size:16px; color:var(--ink-soft); display:none; }
+  .explain.show { display:block; }
+  .submit-row { display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-top:8px; }
+  .result { display:none; margin-top:20px; padding:22px 24px; border-radius:18px; background:linear-gradient(135deg,var(--accent-2),#fff); border:1px solid var(--line); box-shadow:var(--shadow); }
+  .result.show { display:block; }
+  .result .score { font-family:var(--font-head); font-size:34px; }
+  .msg { font-size:15px; margin-top:6px; }
+  .msg.err { color:#b91c1c; }
+</style>
+</head>
+<body data-accent="speaking">
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span> Bilingual Initiatives</a>
+    <div class="menu">
+      <a class="link" href="english-club.html">English Club</a>
+      <a class="link" href="broadcast.html">Broadcast</a>
+      <a class="link" href="speaking.html">Speaking</a>
+      <a class="link" href="activities.html">Activities</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="emoji">📝</div>
+    <div class="eyebrow">Watch &amp; Quiz</div>
+    <h1>Meet Teacher Mary</h1>
+    <p class="lede">Watch the introduction video, then answer five questions. Tap 🔊 to hear each question.</p>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap quiz">
+    <div class="video-wrap" style="margin-bottom:30px">
+      <div class="video-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/TU5jqxsM4N8" title="Teacher Mary self-introduction" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <form id="quizForm">
+      <p class="kicker">First, tell us who you are</p>
+      <div class="ident">
+        <label>Name 姓名<input type="text" id="stuName" required autocomplete="off" placeholder="e.g. Amy Lin"></label>
+        <label>Class 班級<input type="text" id="stuClass" required autocomplete="off" placeholder="e.g. 5-A"></label>
+      </div>
+
+      <p class="kicker" style="margin-top:34px">Five questions</p>
+
+      <!-- Q1 -->
+      <div class="q" data-answer="b">
+        <div class="qhead"><span class="qnum">1</span><span class="qtext">Where does Mary come from?</span>
+          <button type="button" class="speak" data-say="Where does Mary come from?" aria-label="play">🔊</button></div>
+        <div class="zh">瑪麗來自哪個國家？</div>
+        <ul class="opts">
+          <li><label><input type="radio" name="q1" value="a"> Thailand</label></li>
+          <li><label><input type="radio" name="q1" value="b"> The Philippines</label></li>
+          <li><label><input type="radio" name="q1" value="c"> Vietnam</label></li>
+          <li><label><input type="radio" name="q1" value="d"> India</label></li>
+        </ul>
+        <p class="explain">✅ The Philippines.（她來自菲律賓。）</p>
+      </div>
+
+      <!-- Q2 -->
+      <div class="q" data-answer="c">
+        <div class="qhead"><span class="qnum">2</span><span class="qtext">What is Mary's job at the school?</span>
+          <button type="button" class="speak" data-say="What is Mary's job at the school?" aria-label="play">🔊</button></div>
+        <div class="zh">瑪麗在學校的工作是什麼？</div>
+        <ul class="opts">
+          <li><label><input type="radio" name="q2" value="a"> School cook</label></li>
+          <li><label><input type="radio" name="q2" value="b"> Bus driver</label></li>
+          <li><label><input type="radio" name="q2" value="c"> English teaching assistant</label></li>
+          <li><label><input type="radio" name="q2" value="d"> School nurse</label></li>
+        </ul>
+        <p class="explain">✅ A foreign English teaching assistant.（她是外籍英語教學助理。）</p>
+      </div>
+
+      <!-- Q3 -->
+      <div class="q" data-answer="a">
+        <div class="qhead"><span class="qnum">3</span><span class="qtext">In which county in Taiwan does she teach?</span>
+          <button type="button" class="speak" data-say="In which county in Taiwan does she teach?" aria-label="play">🔊</button></div>
+        <div class="zh">她在台灣哪一個縣教書？</div>
+        <ul class="opts">
+          <li><label><input type="radio" name="q3" value="a"> Changhua County</label></li>
+          <li><label><input type="radio" name="q3" value="b"> Taichung City</label></li>
+          <li><label><input type="radio" name="q3" value="c"> Nantou County</label></li>
+          <li><label><input type="radio" name="q3" value="d"> Yunlin County</label></li>
+        </ul>
+        <p class="explain">✅ Changhua County.（彰化縣 — 南興國小 Nanhsing Elementary School。）</p>
+      </div>
+
+      <!-- Q4 -->
+      <div class="q" data-answer="b">
+        <div class="qhead"><span class="qnum">4</span><span class="qtext">What does Mary enjoy doing in her free time?</span>
+          <button type="button" class="speak" data-say="What does Mary enjoy doing in her free time?" aria-label="play">🔊</button></div>
+        <div class="zh">瑪麗空閒時喜歡做什麼？</div>
+        <ul class="opts">
+          <li><label><input type="radio" name="q4" value="a"> Playing basketball</label></li>
+          <li><label><input type="radio" name="q4" value="b"> Reading books and watching movies</label></li>
+          <li><label><input type="radio" name="q4" value="c"> Cooking and baking</label></li>
+          <li><label><input type="radio" name="q4" value="d"> Painting and drawing</label></li>
+        </ul>
+        <p class="explain">✅ Reading books and watching movies.（她喜歡看書和看電影。）</p>
+      </div>
+
+      <!-- Q5 -->
+      <div class="q" data-answer="d">
+        <div class="qhead"><span class="qnum">5</span><span class="qtext">What is Mary exploring now?</span>
+          <button type="button" class="speak" data-say="What is Mary exploring now?" aria-label="play">🔊</button></div>
+        <div class="zh">瑪麗現在正在探索什麼？</div>
+        <ul class="opts">
+          <li><label><input type="radio" name="q5" value="a"> The food of the Philippines</label></li>
+          <li><label><input type="radio" name="q5" value="b"> A new language from Europe</label></li>
+          <li><label><input type="radio" name="q5" value="c"> Online video games</label></li>
+          <li><label><input type="radio" name="q5" value="d"> The landscapes and culture of Taiwan</label></li>
+        </ul>
+        <p class="explain">✅ The fascinating landscapes and rich culture of Taiwan.（台灣的風景與文化。）</p>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="btn" id="submitBtn">Submit my answers ✓</button>
+        <span class="msg" id="msg"></span>
+      </div>
+    </form>
+
+    <div class="result" id="result">
+      <div class="score" id="scoreText"></div>
+      <p id="resultMsg" style="font-size:18px;margin:6px 0 0"></p>
+      <p class="msg" id="saveMsg"></p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <span><a href="index.html">← Back to home</a></span>
+    <span>Demo site · My Culture Connect (MCC)</span>
+  </div>
+</footer>
+
+<script src="assets/js/speak.js"></script>
+<script>
+/* =====================================================================
+   STEP 4 — paste your Google Apps Script Web App URL between the quotes.
+   It looks like: https://script.google.com/macros/s/AKfy....../exec
+   Leave it empty to test the quiz without saving.
+   ===================================================================== */
+const ENDPOINT = "";
+
+const form = document.getElementById('quizForm');
+const result = document.getElementById('result');
+const QS = [...document.querySelectorAll('.q')];
+
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const name = document.getElementById('stuName').value.trim();
+  const klass = document.getElementById('stuClass').value.trim();
+  const msg = document.getElementById('msg');
+  msg.textContent = ''; msg.className = 'msg';
+
+  // require all answered
+  const answers = {};
+  for (let i = 0; i < QS.length; i++) {
+    const sel = form.querySelector('input[name="q' + (i + 1) + '"]:checked');
+    if (!name || !klass) { msg.textContent = 'Please fill in your name and class. 請先填姓名與班級。'; msg.className = 'msg err'; return; }
+    if (!sel) { msg.textContent = 'Please answer every question. 請回答每一題。'; msg.className = 'msg err'; QS[i].scrollIntoView({behavior:'smooth',block:'center'}); return; }
+    answers['q' + (i + 1)] = sel.value;
+  }
+
+  // grade + reveal
+  let score = 0;
+  QS.forEach((q, i) => {
+    const correct = q.dataset.answer;
+    const chosen = answers['q' + (i + 1)];
+    if (chosen === correct) score++;
+    q.querySelectorAll('.opts label').forEach(lab => {
+      const val = lab.querySelector('input').value;
+      if (val === correct) lab.classList.add('correct');
+      else if (val === chosen) lab.classList.add('wrong');
+    });
+    q.querySelector('.explain').classList.add('show');
+  });
+
+  // show result
+  document.getElementById('scoreText').textContent = 'Your score: ' + score + ' / 5  ' + (score === 5 ? '🎉' : score >= 3 ? '👍' : '💪');
+  document.getElementById('resultMsg').textContent = score === 5 ? 'Perfect! You watched carefully.' : score >= 3 ? 'Nice work — check the answers above.' : 'Good try — review the video and the answers above.';
+  result.classList.add('show');
+  document.getElementById('submitBtn').disabled = true;
+  result.scrollIntoView({behavior:'smooth', block:'center'});
+
+  // save to Google Sheet (via Apps Script)
+  const saveMsg = document.getElementById('saveMsg');
+  if (!ENDPOINT) { saveMsg.textContent = '(Demo mode — answers are not being saved yet.)'; return; }
+  const payload = { name, class: klass, score, total: 5,
+    q1: answers.q1, q2: answers.q2, q3: answers.q3, q4: answers.q4, q5: answers.q5 };
+  try {
+    await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload) });
+    saveMsg.textContent = '✅ Your answers were sent to the teacher.';
+  } catch (err) {
+    saveMsg.textContent = '⚠️ Could not send your answers. Please tell the teacher.';
+    saveMsg.className = 'msg err';
+  }
+});
+</script>
+</body>
+</html>
