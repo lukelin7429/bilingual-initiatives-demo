@@ -174,6 +174,18 @@ a { color: var(--accent-ink); }
 .v-stack .v-title { font-size:26px; margin:26px 0 4px; text-align:center; }
 .v-stack .by { color:var(--ink-soft); font-weight:700; margin:0 0 16px; text-align:center; }
 
+/* ---------- QR card ---------- */
+.qr-card { display:flex; gap:24px; align-items:center; justify-content:center; flex-wrap:wrap;
+  background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow);
+  padding:22px 28px; max-width:560px; margin:40px auto 0; }
+.qr-card img { width:168px; height:168px; border-radius:12px; flex:none; }
+.qr-card .qr-txt { text-align:left; min-width:200px; flex:1; }
+.qr-card .qr-txt .big { font-family:var(--font-head); font-size:22px; font-weight:600; }
+.qr-card .qr-txt p { margin:6px 0 0; color:var(--ink-soft); font-size:16px; }
+.qr-card .qr-url { display:inline-block; margin-top:10px; font-size:13px; color:var(--accent-ink);
+  background:var(--bg-soft); border:1px solid var(--line); border-radius:8px; padding:5px 10px; word-break:break-all; }
+@media (max-width:480px){ .qr-card { flex-direction:column; text-align:center; } .qr-card .qr-txt{ text-align:center; } }
+
 /* ---------- inline quiz ---------- */
 .quiz-head { text-align:center; margin:38px 0 0; }
 .ident { display:flex; gap:16px; flex-wrap:wrap; margin-top:14px; }
