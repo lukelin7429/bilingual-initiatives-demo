@@ -123,19 +123,51 @@ a { color: var(--accent-ink); }
 .v-feature .lay { display:grid; grid-template-columns: 1.15fr .85fr; gap:36px; align-items:center; margin-top:30px; }
 @media (max-width: 900px){ .v-feature .lay { grid-template-columns:1fr; gap:24px; } }
 
-.v-fancy { position:relative; border-radius:28px; padding:7px;
-  background:linear-gradient(135deg,#ff6b4a,#8b5cf6,#3b82f6,#10b981,#ff6b4a);
-  background-size:300% 300%; animation:grad 9s ease infinite;
-  box-shadow:0 26px 70px rgba(31,36,48,.24); }
-@keyframes grad { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-.v-fancy::after { content:"▶ Featured"; position:absolute; top:-14px; left:24px;
-  background:#10241f; color:#9af5cf; font-weight:800; font-size:13px; letter-spacing:.05em;
-  padding:6px 14px; border-radius:999px; box-shadow:var(--shadow); }
-.v-fancy .inner { background:#000; border-radius:22px; overflow:hidden; }
-.v-fancy .video-frame { border-radius:22px; box-shadow:none; }
-.v-spark { position:absolute; font-size:26px; opacity:.9; animation:floaty 4s ease-in-out infinite; }
-.v-spark.s1 { top:-18px; right:-10px; } .v-spark.s2 { bottom:-16px; left:-12px; animation-delay:1.5s; }
-@keyframes floaty { 0%,100%{ transform:translateY(0) rotate(0); } 50%{ transform:translateY(-8px) rotate(8deg); } }
+.v-fancy { position:relative; border-radius:28px; padding:9px; isolation:isolate;
+  background:linear-gradient(125deg,#7a5310,#caa12e 18%,#ffe79a 34%,#fff6cf 44%,#ffd86b 56%,#b8860b 72%,#ffe79a 86%,#7a5310);
+  background-size:300% 300%; animation:goldshimmer 5s linear infinite;
+  box-shadow:0 0 0 1px rgba(180,134,11,.5), 0 22px 60px rgba(120,80,10,.40), inset 0 0 14px rgba(255,247,200,.5);
+}
+@keyframes goldshimmer { 0%{background-position:0% 50%} 100%{background-position:300% 50%} }
+
+/* rotating golden halo behind the frame */
+.v-fancy::before { content:""; position:absolute; inset:-7px; z-index:-1; border-radius:34px;
+  background:conic-gradient(from 0deg, #ffd700,#fff3b0,#d4af37,#ffe79a,#b8860b,#ffcf40,#fff6cf,#ffd700);
+  filter:blur(13px); opacity:.85; animation:spin 6s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* pulsing outer glow */
+.v-fancy .inner { background:#000; border-radius:21px; overflow:hidden; position:relative;
+  box-shadow:0 0 0 2px rgba(0,0,0,.25); animation:goldpulse 2.8s ease-in-out infinite; }
+@keyframes goldpulse {
+  0%,100%{ box-shadow:0 0 0 2px rgba(0,0,0,.25), 0 0 22px 2px rgba(255,210,80,.45); }
+  50%    { box-shadow:0 0 0 2px rgba(0,0,0,.25), 0 0 40px 8px rgba(255,215,0,.85); }
+}
+.v-fancy .video-frame { border-radius:21px; box-shadow:none; }
+
+/* "Featured" ribbon — gold, with its own shimmer */
+.v-fancy::after { content:"★ Featured"; position:absolute; top:-15px; left:22px; z-index:3;
+  color:#5a3d00; font-weight:900; font-size:13px; letter-spacing:.06em;
+  padding:7px 16px; border-radius:999px;
+  background:linear-gradient(100deg,#ffe79a,#fff8dc,#ffcf40,#fff8dc,#ffe79a);
+  background-size:200% 100%; animation:goldshimmer 3s linear infinite;
+  box-shadow:0 6px 16px rgba(180,134,11,.5), inset 0 0 0 1px rgba(255,255,255,.6); }
+
+/* twinkling sparkles (more of them, varied) */
+.v-spark { position:absolute; z-index:3; font-size:24px; pointer-events:none;
+  filter:drop-shadow(0 2px 6px rgba(180,134,11,.6)); animation:twinkle 2.4s ease-in-out infinite; }
+.v-spark.s1 { top:-16px;  right:-12px; font-size:30px; animation-delay:0s; }
+.v-spark.s2 { bottom:-14px; left:-10px; font-size:26px; animation-delay:.9s; }
+.v-spark.s3 { top:40%;    right:-16px; font-size:20px; animation-delay:.5s; }
+.v-spark.s4 { top:-12px;  left:38%;   font-size:18px; animation-delay:1.4s; }
+.v-spark.s5 { bottom:-12px; right:30%; font-size:22px; animation-delay:1.9s; }
+@keyframes twinkle {
+  0%,100%{ opacity:.25; transform:scale(.7) rotate(0deg); }
+  50%    { opacity:1;   transform:scale(1.25) rotate(18deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v-fancy, .v-fancy::before, .v-fancy::after, .v-fancy .inner, .v-spark { animation:none; }
+}
 
 .v-meta h3 { font-size:26px; margin:0 0 6px; }
 .v-meta .by { color:var(--ink-soft); font-weight:700; margin:0 0 16px; }
