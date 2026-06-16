@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaking Corner — Bilingual Initiatives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗣️</text></svg>">
+</head>
+<body data-accent="speaking">
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span> Bilingual Initiatives</a>
+    <div class="menu">
+      <a class="link" href="english-club.html">English Club</a>
+      <a class="link" href="broadcast.html">Broadcast</a>
+      <a class="link" href="speaking.html" aria-current="page">Speaking</a>
+      <a class="link" href="activities.html">Activities</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="float a">⭐</span><span class="float b">🎟️</span><span class="float c">💬</span>
+  <div class="wrap">
+    <div class="emoji">🗣️</div>
+    <div class="eyebrow">Every day · 10:10</div>
+    <h1>Speaking Corner</h1>
+    <p class="lede">Every day at <b>10:10</b>, students drop by the corner to hear the Word of the Day, practise pronunciation, and answer a question with the teacher.</p>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap">
+    <p class="kicker">Try it · Word of the Day</p>
+    <h2>Tap the button — a new word each time</h2>
+    <div class="wotd rvl" style="max-width:560px;margin-top:24px">
+      <div class="label">Word of the Day</div>
+      <div class="word" id="wotd-word">brave</div>
+      <div class="pos" id="wotd-pos">(adjective)</div>
+      <p id="wotd-ex" style="font-size:20px;margin:14px 0 22px">Be <b>brave</b> and try to speak English!</p>
+      <button class="speak btn" id="wotd-say" data-say="brave. Be brave and try to speak English!" style="border-radius:999px;width:auto;height:auto;padding:14px 24px">🔊 Listen</button>
+      <button class="btn ghost" id="wotd-next" style="margin-left:8px">↻ Next word</button>
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="wrap">
+    <p class="kicker">The routine</p>
+    <h2>Stop by, speak, collect a stamp</h2>
+    <div class="grid">
+      <div class="card rvl"><span class="ic">👂</span><h3>Listen</h3><p>Hear today's word and an example sentence from the English teacher.</p></div>
+      <div class="card rvl"><span class="ic">🦜</span><h3>Repeat</h3><p>Practise the pronunciation out loud, together.</p></div>
+      <div class="card rvl"><span class="ic">💬</span><h3>Answer</h3><p>Reply to one quick question to use the word in a real sentence.</p></div>
+      <div class="card rvl"><span class="ic">⭐</span><h3>Stamp!</h3><p>Every visit earns a stamp on your card.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <p class="kicker">The reward loop</p>
+    <h2>Stamps turn into tickets</h2>
+    <p class="intro">Collect enough stamps and you earn a ticket to that month's activity — a simple loop that keeps students speaking, voluntarily.</p>
+    <div class="grid">
+      <div class="card rvl"><span class="ic">🎟️</span><h3>Earn a ticket</h3><p>Enough stamps = an invitation to the monthly event.</p></div>
+      <div class="card rvl"><span class="ic">🎱</span><h3>English Bingo</h3><p>Listen-and-mark bingo using the month's words.</p></div>
+      <div class="card rvl"><span class="ic">🛒</span><h3>English Store</h3><p>Spend "English dollars" earned by speaking — entirely in English.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <span><a href="index.html">← Back to all themes</a></span>
+    <span>Demo site · My Culture Connect (MCC)</span>
+  </div>
+</footer>
+
+<script src="assets/js/speak.js"></script>
+<script src="assets/js/motion.js"></script>
+<script>
+(function(){
+  var words = [
+    {w:"brave",   p:"(adjective)", ex:"Be <b>brave</b> and try to speak English!", say:"brave. Be brave and try to speak English!"},
+    {w:"curious",  p:"(adjective)", ex:"A <b>curious</b> student asks lots of questions.", say:"curious. A curious student asks lots of questions."},
+    {w:"share",   p:"(verb)",      ex:"Please <b>share</b> your idea with the class.", say:"share. Please share your idea with the class."},
+    {w:"grateful", p:"(adjective)", ex:"I am <b>grateful</b> for my friends.", say:"grateful. I am grateful for my friends."},
+    {w:"explore", p:"(verb)",      ex:"Let's <b>explore</b> a new topic today.", say:"explore. Let's explore a new topic today."},
+    {w:"kind",    p:"(adjective)", ex:"It is good to be <b>kind</b> to everyone.", say:"kind. It is good to be kind to everyone."}
+  ];
+  var i = 0;
+  var wEl=document.getElementById('wotd-word'), pEl=document.getElementById('wotd-pos'),
+      exEl=document.getElementById('wotd-ex'), sayBtn=document.getElementById('wotd-say'),
+      nextBtn=document.getElementById('wotd-next');
+  function render(){ var d=words[i]; wEl.textContent=d.w; pEl.textContent=d.p; exEl.innerHTML=d.ex; sayBtn.setAttribute('data-say', d.say); }
+  nextBtn.addEventListener('click', function(){ i=(i+1)%words.length; render(); });
+  render();
+})();
+</script>
+</body>
+</html>
